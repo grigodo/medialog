@@ -19,7 +19,8 @@
     --card-radius:12px; --tab-h:60px; --header-h:56px;
   }
   body { font-family:'Malgun Gothic','맑은 고딕',Arial,sans-serif; background:var(--bg); color:var(--text); height:100dvh; overflow:hidden; }
-  #app { display:flex; flex-direction:column; height:100dvh; max-width:480px; margin:0 auto; position:relative; background:#fff; box-shadow:0 0 30px rgba(0,0,0,.08); }
+  #app { display:flex; flex-direction:column; height:100dvh; width:100%; max-width:480px; margin:0 auto; position:relative; background:#fff; box-shadow:0 0 30px rgba(0,0,0,.08); }
+  .cal-grid { width:100%; max-width:480px; table-layout:fixed; border-collapse:collapse; }
 
   .header { height:var(--header-h); display:flex; align-items:center; justify-content:space-between; padding:0 16px; border-bottom:1px solid var(--border); background:#fff; flex-shrink:0; }
   .header h1 { font-size:18px; font-weight:700; letter-spacing:-.3px; }
