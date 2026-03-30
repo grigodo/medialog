@@ -310,8 +310,9 @@
               <span id="google-status-badge" class="google-status disconnected">미연결</span>
             </div>
             <div style="padding:12px 16px 16px">
-              <div id="google-btn-area">
-                <button class="btn btn-primary btn-full" id="btn-google-login">Google로 로그인</button>
+              <div id="google-btn-area" style="display:flex;flex-direction:column;gap:8px">
+                <button class="btn btn-primary btn-full" id="btn-drive-save">⬆ Drive에 저장</button>
+                <button class="btn btn-secondary btn-full" id="btn-drive-load">⬇ Drive에서 불러오기</button>
               </div>
               <div id="google-oauth-client-wrap" style="margin-top:10px">
                 <label class="form-label">Google OAuth Client ID</label>
@@ -923,9 +924,18 @@ document.getElementById('btn-save-google-id').onclick = () => {
   saveSettings();
   showToast('Client ID 저장됨 ✓');
 };
-document.getElementById('btn-google-login').onclick = () => {
-  if(!settings.googleClientId) { showToast('먼저 Client ID를 입력하고 저장해주세요'); return; }
-  initGoogleAuth();
+document.getElementById('btn-drive-save').onclick = async () => {
+  if(!settings.googleClientId) { showToast('먼저 Client ID를 저장해주세요'); return; }
+  await requestTokenThen(async () => {
+    await syncDrive();
+    showToast('Drive에 저장됨 ✓');
+  });
+};
+document.getElementById('btn-drive-load').onclick = async () => {
+  if(!settings.googleClientId) { showToast('먼저 Client ID를 저장해주세요'); return; }
+  await requestTokenThen(async () => {
+    await loadFromDrive();
+  });
 };
 document.getElementById('btn-export-txt').onclick = exportTxt;
 document.getElementById('btn-export-csv').onclick = exportCsv;
@@ -1026,7 +1036,7 @@ function loadGisScript() {
     s.onload = res; document.head.appendChild(s);
   });
 }
-async function initGoogleAuth() {
+async function requestTokenThen(callback) {
   await loadGisScript();
   const client = google.accounts.oauth2.initTokenClient({
     client_id: settings.googleClientId,
@@ -1034,14 +1044,13 @@ async function initGoogleAuth() {
     callback: async (resp) => {
       if(resp.error) { showToast('로그인 실패: '+resp.error); return; }
       gisToken = resp.access_token;
-      settings.googleConnected = true;
-      saveSettings();
-      updateGoogleStatusUI();
-      showToast('Google Drive 연결됨 ✓');
-      await loadFromDrive();
+      await callback();
     }
   });
   client.requestAccessToken();
+}
+async function initGoogleAuth() {
+  await requestTokenThen(() => {});
 }
 async function syncDrive() {
   if(!gisToken) return;
