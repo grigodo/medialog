@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>미디어 로그</title>
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="미디어 로그">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="theme-color" content="#4A90D9">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   :root {
@@ -501,7 +507,7 @@ function renderCalendar() {
   const head = document.getElementById('cal-head');
   const body = document.getElementById('cal-body');
   const days = ['월','화','수','목','금','토','일'];
-  head.innerHTML = days.map((d,i) => `<th style="${i===6?'color:var(--accent)':i===5?'color:#999':''}">${d}</th>`).join('');
+  head.innerHTML = days.map((d,i) => `<th style="${i===5?'color:var(--accent)':i===6?'color:#e05':''}">${d}</th>`).join('');
 
   const today = new Date();
   const firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
