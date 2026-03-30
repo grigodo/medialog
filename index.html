@@ -21,7 +21,6 @@
   body { font-family:'Malgun Gothic','맑은 고딕',Arial,sans-serif; background:var(--bg); color:var(--text); height:100dvh; overflow:hidden; }
   #app { display:flex; flex-direction:column; height:100dvh; max-width:480px; margin:0 auto; position:relative; background:#fff; box-shadow:0 0 30px rgba(0,0,0,.08); }
 
-  /* HEADER */
   .header { height:var(--header-h); display:flex; align-items:center; justify-content:space-between; padding:0 16px; border-bottom:1px solid var(--border); background:#fff; flex-shrink:0; }
   .header h1 { font-size:18px; font-weight:700; letter-spacing:-.3px; }
   .header-btns { display:flex; gap:8px; }
@@ -29,18 +28,16 @@
   .icon-btn:hover { background:var(--bg2); }
   .icon-btn svg { width:20px; height:20px; }
 
-  /* CONTENT */
   .content { flex:1; overflow-y:auto; overflow-x:hidden; }
   .page { display:none; }
   .page.active { display:block; }
 
-  /* TAB BAR */
   .tabbar { height:var(--tab-h); display:flex; border-top:1px solid var(--border); background:#fff; flex-shrink:0; }
   .tab { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; cursor:pointer; border:none; background:none; color:var(--text3); font-family:inherit; font-size:10px; transition:color .15s; }
   .tab.active { color:var(--accent); }
   .tab svg { width:22px; height:22px; }
 
-  /* ── CALENDAR PAGE ── */
+  /* CALENDAR */
   .cal-nav { display:flex; align-items:center; justify-content:space-between; padding:14px 16px 10px; }
   .cal-title { display:flex; align-items:center; gap:6px; }
   .cal-title select { font-family:inherit; font-size:17px; font-weight:700; border:none; background:none; cursor:pointer; color:var(--text); appearance:none; -webkit-appearance:none; padding-right:4px; }
@@ -48,17 +45,18 @@
   .cal-arrow:hover { background:var(--bg2); }
   .cal-grid { width:100%; table-layout:fixed; border-collapse:collapse; }
   .cal-grid th { font-size:11px; color:var(--text2); text-align:center; padding:4px 0 8px; font-weight:500; }
-  .cal-grid th:first-child { color:#e05; }
-  .cal-grid th:last-child { color:var(--accent); }
-  .cal-grid td { text-align:center; vertical-align:top; padding:2px; height:72px; border:none; }
+  .cal-grid td { text-align:center; vertical-align:top; padding:2px; height:90px; border:none; }
   .cal-day-num { font-size:11px; color:var(--text2); margin-bottom:2px; display:block; }
   .cal-day-num.today { background:var(--accent); color:#fff; border-radius:50%; width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; }
-  .cal-thumb-wrap { display:flex; flex-direction:column; align-items:center; gap:1px; overflow:hidden; max-height:52px; }
-  .cal-thumb { width:28px; height:40px; object-fit:cover; border-radius:3px; flex-shrink:0; }
-  .cal-thumb-placeholder { width:28px; height:40px; background:var(--border); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
-  .cal-more { font-size:9px; color:var(--text3); }
+  .cal-thumb-wrap { width:100%; height:70px; overflow:hidden; border-radius:4px; position:relative; }
+  .cal-thumb-single { width:100%; height:70px; object-fit:cover; border-radius:4px; display:block; }
+  .cal-thumb-single-ph { width:100%; height:70px; background:var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .cal-thumb-grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; width:100%; height:70px; gap:1px; border-radius:4px; overflow:hidden; }
+  .cal-thumb-grid img { width:100%; height:100%; object-fit:cover; display:block; }
+  .cal-thumb-grid-ph { width:100%; height:100%; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:12px; }
+  .cal-more-badge { position:absolute; bottom:2px; right:2px; background:rgba(0,0,0,.55); color:#fff; font-size:9px; padding:1px 4px; border-radius:3px; }
 
-  /* ── LIBRARY PAGE ── */
+  /* LIBRARY */
   .lib-toolbar { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--border); }
   .lib-filter { display:flex; gap:6px; }
   .filter-chip { padding:5px 12px; border-radius:20px; border:1px solid var(--border); font-size:12px; cursor:pointer; background:#fff; font-family:inherit; color:var(--text2); }
@@ -67,15 +65,11 @@
   .view-btn { width:32px; height:32px; border:1px solid var(--border); background:#fff; border-radius:7px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text3); }
   .view-btn.active { background:var(--text); color:#fff; border-color:var(--text); }
   .view-btn svg { width:16px; height:16px; }
-
-  /* grid view */
   .lib-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:16px; }
   .lib-grid-item { cursor:pointer; }
   .lib-cover { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:8px; display:block; }
   .lib-cover-placeholder { width:100%; aspect-ratio:2/3; background:var(--bg2); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:28px; }
   .lib-grid-title { font-size:11px; margin-top:5px; line-height:1.3; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
-
-  /* list view */
   .lib-list { display:flex; flex-direction:column; }
   .lib-section-header { padding:10px 16px 4px; font-size:12px; font-weight:700; color:var(--text2); background:var(--bg2); border-bottom:1px solid var(--border); }
   .lib-list-item { display:flex; gap:12px; padding:12px 16px; border-bottom:1px solid var(--border); cursor:pointer; align-items:flex-start; }
@@ -91,14 +85,14 @@
   .badge-movie { background:#FFF3EE; color:#E8720C; }
   .badge-drama { background:#F0FFF4; color:#2D9E5F; }
 
-  /* ── SEARCH PAGE ── */
+  /* SEARCH */
   .search-bar { padding:12px 16px; border-bottom:1px solid var(--border); display:flex; gap:8px; }
   .search-input { flex:1; height:40px; border:1px solid var(--border); border-radius:10px; padding:0 14px; font-family:inherit; font-size:14px; outline:none; }
   .search-input:focus { border-color:var(--accent); }
   .search-btn { width:40px; height:40px; background:var(--accent); color:#fff; border:none; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .search-btn svg { width:18px; height:18px; }
   .search-tabs { display:flex; border-bottom:1px solid var(--border); }
-  .search-tab { flex:1; padding:10px; text-align:center; font-size:13px; cursor:pointer; border-none; background:none; border:none; font-family:inherit; color:var(--text2); border-bottom:2px solid transparent; }
+  .search-tab { flex:1; padding:10px; text-align:center; font-size:13px; cursor:pointer; border:none; background:none; font-family:inherit; color:var(--text2); border-bottom:2px solid transparent; }
   .search-tab.active { color:var(--accent); border-bottom-color:var(--accent); font-weight:600; }
   .search-results { padding:8px 0; }
   .search-result-item { display:flex; gap:12px; padding:10px 16px; border-bottom:1px solid var(--border); cursor:pointer; align-items:flex-start; }
@@ -111,7 +105,7 @@
   .add-btn:hover { background:var(--accent); color:#fff; }
   .search-empty { text-align:center; padding:40px 20px; color:var(--text3); font-size:14px; }
 
-  /* ── STATS PAGE ── */
+  /* STATS */
   .stats-wrap { padding:16px; }
   .stats-year-nav { display:flex; align-items:center; justify-content:center; gap:20px; margin-bottom:20px; }
   .stats-year { font-size:18px; font-weight:700; }
@@ -128,7 +122,7 @@
   .bar-label { font-size:9px; color:var(--text3); }
   .bar-val { font-size:9px; color:var(--text2); }
 
-  /* ── SETTINGS PAGE ── */
+  /* SETTINGS */
   .settings-wrap { padding:16px; }
   .settings-section { margin-bottom:24px; }
   .settings-section-title { font-size:12px; color:var(--text2); font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:.5px; }
@@ -145,14 +139,11 @@
   .settings-input:focus { border-color:var(--accent); }
   .btn { padding:10px 20px; border-radius:10px; border:none; cursor:pointer; font-family:inherit; font-size:13px; font-weight:600; }
   .btn-primary { background:var(--accent); color:#fff; }
-  .btn-secondary { background:var(--bg2); color:var(--text); border:1px solid var(--border); }
+  .btn-secondary { background:#fff; color:var(--text); border:1px solid var(--border); }
   .btn-danger { background:#fee; color:#c00; border:1px solid #fcc; }
   .btn-full { width:100%; margin-top:8px; }
-  .google-status { display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:600; }
-  .google-status.connected { background:#e6f4ea; color:#1a7340; }
-  .google-status.disconnected { background:#fce8e6; color:#c5221f; }
 
-  /* ── DETAIL MODAL ── */
+  /* MODAL */
   .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:100; display:none; align-items:flex-end; justify-content:center; }
   .modal-overlay.open { display:flex; }
   .modal { background:#fff; border-radius:20px 20px 0 0; width:100%; max-width:480px; max-height:90dvh; overflow-y:auto; padding-bottom:env(safe-area-inset-bottom,0px); }
@@ -179,9 +170,6 @@
   .star.on { color:#f5a623; }
   .modal-footer { display:flex; gap:8px; padding:0 16px 20px; }
   .modal-footer .btn { flex:1; }
-
-  /* ADD MODAL */
-  .add-modal-content { padding:16px; }
   .add-modal-top { display:flex; gap:14px; align-items:flex-start; margin-bottom:16px; }
   .add-modal-cover { width:60px; height:90px; object-fit:cover; border-radius:6px; flex-shrink:0; background:var(--bg2); }
 
@@ -189,33 +177,26 @@
   .toast { position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(20px); background:#222; color:#fff; padding:10px 20px; border-radius:20px; font-size:13px; opacity:0; transition:all .3s; pointer-events:none; z-index:200; white-space:nowrap; }
   .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
-  /* EMPTY */
   .empty { text-align:center; padding:60px 20px; color:var(--text3); }
   .empty svg { width:48px; height:48px; margin-bottom:12px; opacity:.3; }
   .empty p { font-size:14px; }
-
-  /* LOADING */
   .loading { text-align:center; padding:30px; color:var(--text3); font-size:13px; }
   .spinner { width:24px; height:24px; border:2px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; margin:0 auto 8px; }
   @keyframes spin { to { transform:rotate(360deg); } }
-
-  /* SCROLLBAR */
   .content::-webkit-scrollbar { width:0; }
 </style>
 </head>
 <body>
 <div id="app">
-  <!-- HEADER -->
   <div class="header">
     <h1 id="header-title">캘린더</h1>
     <div class="header-btns">
-      <button class="icon-btn" id="btn-add" title="기록 추가">
+      <button class="icon-btn" id="btn-add">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
       </button>
     </div>
   </div>
 
-  <!-- CONTENT -->
   <div class="content">
     <!-- CALENDAR -->
     <div class="page active" id="page-calendar">
@@ -225,12 +206,8 @@
           <select id="cal-month-sel"></select>
         </div>
         <div style="display:flex;gap:4px">
-          <button class="cal-arrow" id="cal-prev">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <button class="cal-arrow" id="cal-next">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
+          <button class="cal-arrow" id="cal-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="cal-arrow" id="cal-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
       </div>
       <table class="cal-grid">
@@ -249,10 +226,10 @@
           <button class="filter-chip" data-filter="drama">📺 드라마</button>
         </div>
         <div class="view-btns">
-          <button class="view-btn active" id="btn-grid-view" title="격자보기">
+          <button class="view-btn active" id="btn-grid-view">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
           </button>
-          <button class="view-btn" id="btn-list-view" title="리스트보기">
+          <button class="view-btn" id="btn-list-view">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
           </button>
         </div>
@@ -263,7 +240,7 @@
     <!-- SEARCH -->
     <div class="page" id="page-search">
       <div class="search-bar">
-        <input class="search-input" id="search-input" type="text" placeholder="책, 영화, 드라마 검색..." />
+        <input class="search-input" id="search-input" type="text" placeholder="책, 영화, 드라마 검색..."/>
         <button class="search-btn" id="search-do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
@@ -280,13 +257,9 @@
     <div class="page" id="page-stats">
       <div class="stats-wrap">
         <div class="stats-year-nav">
-          <button class="cal-arrow" id="stats-prev">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
+          <button class="cal-arrow" id="stats-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
           <span class="stats-year" id="stats-year-label"></span>
-          <button class="cal-arrow" id="stats-next">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
+          <button class="cal-arrow" id="stats-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
         <div id="stats-content"></div>
       </div>
@@ -295,6 +268,7 @@
     <!-- SETTINGS -->
     <div class="page" id="page-settings">
       <div class="settings-wrap">
+
         <!-- Google Drive -->
         <div class="settings-section">
           <div class="settings-section-title">Google Drive 동기화</div>
@@ -304,21 +278,16 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2"><path d="M22 12.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h9"/><path d="M22 20l-5-5"/><path d="M22 15h-5v5"/></svg>
               </div>
               <div class="settings-row-body">
-                <div class="settings-row-label">Google 계정 연결</div>
-                <div class="settings-row-sub" id="google-status-text">연결되지 않음</div>
+                <div class="settings-row-label">Google Drive 연동</div>
+                <div class="settings-row-sub">버튼으로 수동 저장·불러오기</div>
               </div>
-              <span id="google-status-badge" class="google-status disconnected">미연결</span>
             </div>
-            <div style="padding:12px 16px 16px">
-              <div id="google-btn-area" style="display:flex;flex-direction:column;gap:8px">
-                <button class="btn btn-primary btn-full" id="btn-drive-save">⬆ Drive에 저장</button>
-                <button class="btn btn-secondary btn-full" id="btn-drive-load">⬇ Drive에서 불러오기</button>
-              </div>
-              <div id="google-oauth-client-wrap" style="margin-top:10px">
-                <label class="form-label">Google OAuth Client ID</label>
-                <input class="settings-input" id="input-google-client-id" placeholder="xxxx.apps.googleusercontent.com" />
-                <button class="btn btn-secondary btn-full" id="btn-save-google-id" style="margin-top:6px">Client ID 저장</button>
-              </div>
+            <div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:8px">
+              <button class="btn btn-primary btn-full" id="btn-drive-save" style="margin-top:8px">⬆ Drive에 저장</button>
+              <button class="btn btn-secondary btn-full" id="btn-drive-load">⬇ Drive에서 불러오기</button>
+              <label class="form-label" style="margin-top:6px">Google OAuth Client ID</label>
+              <input class="settings-input" id="input-google-client-id" placeholder="xxxx.apps.googleusercontent.com" style="margin-top:0"/>
+              <button class="btn btn-secondary btn-full" id="btn-save-google-id" style="margin-top:0">Client ID 저장</button>
             </div>
           </div>
         </div>
@@ -327,16 +296,16 @@
         <div class="settings-section">
           <div class="settings-section-title">API 키 설정</div>
           <div class="settings-item">
-            <div style="padding:14px 16px">
+            <div style="padding:14px 16px 0">
               <label class="form-label">카카오 REST API 키 (책 검색)</label>
-              <input class="settings-input" id="input-kakao-key" type="password" placeholder="카카오 REST API 키 입력" />
+              <input class="settings-input" id="input-kakao-key" type="password" placeholder="카카오 REST API 키 입력"/>
             </div>
-            <div style="padding:0 16px 14px">
+            <div style="padding:10px 16px 0">
               <label class="form-label">TMDB API 키 (영화·드라마 검색)</label>
-              <input class="settings-input" id="input-tmdb-key" type="password" placeholder="TMDB API 키 입력" />
+              <input class="settings-input" id="input-tmdb-key" type="password" placeholder="TMDB API 키 입력"/>
             </div>
-            <div style="padding:0 16px 16px">
-              <button class="btn btn-primary btn-full" id="btn-save-keys">API 키 저장</button>
+            <div style="padding:10px 16px 16px">
+              <button class="btn btn-primary btn-full" id="btn-save-keys" style="margin-top:0">API 키 저장</button>
             </div>
           </div>
         </div>
@@ -368,7 +337,7 @@
           </div>
         </div>
 
-        <!-- Backup & Restore -->
+        <!-- Backup -->
         <div class="settings-section">
           <div class="settings-section-title">백업 및 복구</div>
           <div class="settings-item">
@@ -408,11 +377,11 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
 
-  <!-- TAB BAR -->
   <nav class="tabbar">
     <button class="tab active" data-page="calendar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -437,7 +406,6 @@
   </nav>
 </div>
 
-<!-- DETAIL / ADD MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal" id="modal">
     <div class="modal-handle"></div>
@@ -450,50 +418,43 @@
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ────────────────────────────────────────────────────────────
-//  STATE
-// ────────────────────────────────────────────────────────────
 const STORAGE_KEY = 'medialog_v1';
 const SETTINGS_KEY = 'medialog_settings';
-let state = { records: [] };
-let settings = { kakaoKey:'', tmdbKey:'', googleClientId:'', googleConnected:false };
+let state = { records:[] };
+let settings = { kakaoKey:'', tmdbKey:'', googleClientId:'' };
 let curPage = 'calendar';
 let calYear = new Date().getFullYear();
-let calMonth = new Date().getMonth(); // 0-indexed
+let calMonth = new Date().getMonth();
 let statsYear = new Date().getFullYear();
-let libView = 'grid'; // 'grid' | 'list'
+let libView = 'grid';
 let libFilter = 'all';
 let searchType = 'book';
 let currentRating = 0;
-let editingRecord = null; // null = add mode, id = edit mode
-let pendingItem = null; // search result to add
+let editingRecord = null;
+let pendingItem = null;
+let gisToken = null;
+let driveFileId = null;
+const DRIVE_FILE_NAME = 'medialog_data.json';
+const GIS_SCOPE = 'https://www.googleapis.com/auth/drive.appdata';
 
-// ────────────────────────────────────────────────────────────
-//  PERSIST
-// ────────────────────────────────────────────────────────────
+// ── PERSIST ──
 function loadState() {
   try { const d = localStorage.getItem(STORAGE_KEY); if(d) state = JSON.parse(d); } catch(e){}
   try { const d = localStorage.getItem(SETTINGS_KEY); if(d) settings = {...settings,...JSON.parse(d)}; } catch(e){}
 }
-function saveState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  syncDrive();
-}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function saveSettings() { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }
 
-// ────────────────────────────────────────────────────────────
-//  NAVIGATION
-// ────────────────────────────────────────────────────────────
-const pages = { calendar:'캘린더', library:'서재', search:'검색', stats:'통계', settings:'설정' };
+// ── NAVIGATION ──
+const pageNames = { calendar:'캘린더', library:'서재', search:'검색', stats:'통계', settings:'설정' };
 function goPage(p) {
   curPage = p;
-  document.querySelectorAll('.page').forEach(el => el.classList.toggle('active', el.id === 'page-'+p));
-  document.querySelectorAll('.tab').forEach(el => el.classList.toggle('active', el.dataset.page === p));
-  document.getElementById('header-title').textContent = pages[p];
+  document.querySelectorAll('.page').forEach(el => el.classList.toggle('active', el.id==='page-'+p));
+  document.querySelectorAll('.tab').forEach(el => el.classList.toggle('active', el.dataset.page===p));
+  document.getElementById('header-title').textContent = pageNames[p];
   if(p==='calendar') renderCalendar();
   if(p==='library') renderLibrary();
   if(p==='stats') renderStats();
@@ -501,242 +462,194 @@ function goPage(p) {
 }
 document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => goPage(t.dataset.page)));
 
-// ────────────────────────────────────────────────────────────
-//  CALENDAR
-// ────────────────────────────────────────────────────────────
+// ── CALENDAR ──
 function buildCalSelectors() {
   const ySel = document.getElementById('cal-year-sel');
   const mSel = document.getElementById('cal-month-sel');
   ySel.innerHTML = '';
   const now = new Date().getFullYear();
-  for(let y = now+1; y >= 2000; y--) {
+  for(let y=now+1; y>=2000; y--) {
     const o = document.createElement('option');
-    o.value = y; o.textContent = y+'년';
-    if(y === calYear) o.selected = true;
+    o.value=y; o.textContent=y+'년'; if(y===calYear) o.selected=true;
     ySel.appendChild(o);
   }
   mSel.innerHTML = '';
-  const mNames = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-  mNames.forEach((m,i) => {
+  ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'].forEach((m,i) => {
     const o = document.createElement('option');
-    o.value = i; o.textContent = m;
-    if(i === calMonth) o.selected = true;
+    o.value=i; o.textContent=m; if(i===calMonth) o.selected=true;
     mSel.appendChild(o);
   });
-  ySel.onchange = () => { calYear = +ySel.value; renderCalendar(); };
-  mSel.onchange = () => { calMonth = +mSel.value; renderCalendar(); };
+  ySel.onchange = () => { calYear=+ySel.value; renderCalendar(); };
+  mSel.onchange = () => { calMonth=+mSel.value; renderCalendar(); };
 }
 function renderCalendar() {
   buildCalSelectors();
   const head = document.getElementById('cal-head');
   const body = document.getElementById('cal-body');
+  // 월=0 화=1 수=2 목=3 금=4 토=5 일=6
   const days = ['월','화','수','목','금','토','일'];
   head.innerHTML = days.map((d,i) => `<th style="${i===5?'color:var(--accent)':i===6?'color:#e05':''}">${d}</th>`).join('');
-
   const today = new Date();
   const firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
   const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
-  // Convert to Mon-start: Mon=0 ... Sun=6
-  const startOffset = (firstDay + 6) % 7;
-
-  // Group records by date
+  const startOffset = (firstDay + 6) % 7; // Mon=0
   const byDate = {};
   state.records.forEach(r => {
     const d = r.date ? r.date.slice(0,10) : '';
-    if(!byDate[d]) byDate[d] = [];
+    if(!byDate[d]) byDate[d]=[];
     byDate[d].push(r);
   });
-
-  let html = '';
-  let dayCount = 1;
-  const totalCells = Math.ceil((startOffset + daysInMonth) / 7) * 7;
-
+  let html='', dayCount=1;
+  const totalCells = Math.ceil((startOffset+daysInMonth)/7)*7;
   for(let i=0; i<totalCells; i+=7) {
     html += '<tr>';
     for(let j=0; j<7; j++) {
       const cell = i+j;
-      if(cell < startOffset || dayCount > daysInMonth) {
-        html += '<td></td>';
+      if(cell<startOffset || dayCount>daysInMonth) { html+='<td></td>'; continue; }
+      const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(dayCount).padStart(2,'0')}`;
+      const isToday = today.getFullYear()===calYear && today.getMonth()===calMonth && today.getDate()===dayCount;
+      const recs = byDate[dateStr]||[];
+      const numStr = isToday ? `<span class="cal-day-num today">${dayCount}</span>` : `<span class="cal-day-num">${dayCount}</span>`;
+      let thumbHtml = '';
+      if(recs.length === 0) {
+        thumbHtml = '';
+      } else if(recs.length === 1) {
+        const r = recs[0];
+        thumbHtml = `<div class="cal-thumb-wrap">${r.cover ? `<img class="cal-thumb-single" src="${r.cover}" loading="lazy" onerror="this.style.display='none'">` : `<div class="cal-thumb-single-ph">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}</div>`;
       } else {
-        const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(dayCount).padStart(2,'0')}`;
-        const isToday = today.getFullYear()===calYear && today.getMonth()===calMonth && today.getDate()===dayCount;
-        const recs = byDate[dateStr] || [];
-        const numStr = isToday ? `<span class="cal-day-num today">${dayCount}</span>` : `<span class="cal-day-num">${dayCount}</span>`;
-        let thumbs = '';
-        recs.slice(0,2).forEach(r => {
-          if(r.cover) thumbs += `<img class="cal-thumb" src="${r.cover}" loading="lazy" onerror="this.style.display='none'">`;
-          else thumbs += `<div class="cal-thumb-placeholder">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`;
-        });
-        if(recs.length > 2) thumbs += `<span class="cal-more">+${recs.length-2}</span>`;
-        html += `<td data-date="${dateStr}" style="cursor:${recs.length?'pointer':'default'}" onclick="calDayClick('${dateStr}')">
-          ${numStr}
-          <div class="cal-thumb-wrap">${thumbs}</div>
-        </td>`;
-        dayCount++;
+        const show = recs.slice(0,4);
+        const extra = recs.length > 4 ? recs.length - 4 : 0;
+        const cells = show.map(r => r.cover ? `<img src="${r.cover}" loading="lazy" onerror="this.style.background='var(--border)'">` : `<div class="cal-thumb-grid-ph">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`).join('');
+        thumbHtml = `<div class="cal-thumb-wrap"><div class="cal-thumb-grid">${cells}</div>${extra?`<span class="cal-more-badge">+${extra}</span>`:''}</div>`;
       }
+      html+=`<td data-date="${dateStr}" style="cursor:${recs.length?'pointer':'default'}" onclick="calDayClick('${dateStr}')">
+        ${numStr}${thumbHtml}</td>`;
+      dayCount++;
     }
-    html += '</tr>';
+    html+='</tr>';
   }
   body.innerHTML = html;
 }
 function calDayClick(dateStr) {
-  const recs = state.records.filter(r => r.date && r.date.slice(0,10) === dateStr);
+  const recs = state.records.filter(r => r.date && r.date.slice(0,10)===dateStr);
   if(!recs.length) return;
-  if(recs.length === 1) { openDetailModal(recs[0]); return; }
-  // Multiple: show list
-  const body = document.getElementById('modal-body');
+  if(recs.length===1) { openDetailModal(recs[0]); return; }
   document.getElementById('modal-title-text').textContent = dateStr.replace(/-/g,'.');
-  body.innerHTML = recs.map(r => `
+  document.getElementById('modal-body').innerHTML = recs.map(r=>`
     <div onclick="openDetailModal(state.records.find(x=>x.id==='${r.id}'))" style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;align-items:center">
-      ${r.cover ? `<img src="${r.cover}" style="width:36px;height:52px;object-fit:cover;border-radius:4px">` : `<div style="width:36px;height:52px;background:var(--bg2);border-radius:4px;display:flex;align-items:center;justify-content:center">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
+      ${r.cover?`<img src="${r.cover}" style="width:36px;height:52px;object-fit:cover;border-radius:4px">`:`<div style="width:36px;height:52px;background:var(--bg2);border-radius:4px;display:flex;align-items:center;justify-content:center">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
       <div><div style="font-size:14px;font-weight:600">${r.title}</div><div style="font-size:11px;color:var(--text2)">${r.creator||''}</div></div>
-    </div>
-  `).join('');
-  document.getElementById('modal-footer').innerHTML = '';
+    </div>`).join('');
+  document.getElementById('modal-footer').innerHTML='';
   openModal();
 }
 document.getElementById('cal-prev').onclick = () => { calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCalendar(); };
 document.getElementById('cal-next').onclick = () => { calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCalendar(); };
 
-// ────────────────────────────────────────────────────────────
-//  LIBRARY
-// ────────────────────────────────────────────────────────────
+// ── LIBRARY ──
 document.getElementById('btn-grid-view').onclick = () => { libView='grid'; document.getElementById('btn-grid-view').classList.add('active'); document.getElementById('btn-list-view').classList.remove('active'); renderLibrary(); };
 document.getElementById('btn-list-view').onclick = () => { libView='list'; document.getElementById('btn-list-view').classList.add('active'); document.getElementById('btn-grid-view').classList.remove('active'); renderLibrary(); };
 document.querySelectorAll('.filter-chip').forEach(c => c.addEventListener('click', function() {
   document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active'));
-  this.classList.add('active');
-  libFilter = this.dataset.filter;
-  renderLibrary();
+  this.classList.add('active'); libFilter=this.dataset.filter; renderLibrary();
 }));
-
-function getFilteredRecords() {
-  let recs = [...state.records];
-  if(libFilter !== 'all') recs = recs.filter(r => r.type === libFilter);
-  return recs.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+function getFiltered() {
+  let r = [...state.records];
+  if(libFilter!=='all') r=r.filter(x=>x.type===libFilter);
+  return r.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
 }
 function renderLibrary() {
   const cont = document.getElementById('lib-content');
-  const recs = getFilteredRecords();
-  if(!recs.length) { cont.innerHTML = `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><p>기록이 없어요</p></div>`; return; }
-  if(libView === 'grid') {
-    cont.innerHTML = `<div class="lib-grid">${recs.map(r => `
+  const recs = getFiltered();
+  if(!recs.length) { cont.innerHTML=`<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><p>기록이 없어요</p></div>`; return; }
+  if(libView==='grid') {
+    cont.innerHTML=`<div class="lib-grid">${recs.map(r=>`
       <div class="lib-grid-item" onclick="openDetailModal(state.records.find(x=>x.id==='${r.id}'))">
-        ${r.cover ? `<img class="lib-cover" src="${r.cover}" loading="lazy" onerror="this.outerHTML='<div class=lib-cover-placeholder>${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>'">` : `<div class="lib-cover-placeholder">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
+        ${r.cover?`<img class="lib-cover" src="${r.cover}" loading="lazy" onerror="this.outerHTML='<div class=lib-cover-placeholder>${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>'">`:`<div class="lib-cover-placeholder">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
         <div class="lib-grid-title">${r.title}</div>
       </div>`).join('')}</div>`;
   } else {
-    // Group by year-month
-    const grouped = {};
-    recs.forEach(r => {
-      const key = r.date ? r.date.slice(0,7) : '날짜 없음';
-      if(!grouped[key]) grouped[key] = [];
-      grouped[key].push(r);
-    });
-    let html = '';
-    Object.keys(grouped).sort((a,b)=>b.localeCompare(a)).forEach(key => {
-      const label = key === '날짜 없음' ? key : key.replace('-', '년 ')+'월';
-      html += `<div class="lib-section-header">${label}</div>`;
-      grouped[key].forEach(r => {
-        const stars = r.rating ? '★'.repeat(r.rating)+'☆'.repeat(5-r.rating) : '';
-        html += `<div class="lib-list-item" onclick="openDetailModal(state.records.find(x=>x.id==='${r.id}'))">
-          ${r.cover ? `<img class="lib-list-cover" src="${r.cover}" loading="lazy" onerror="this.outerHTML='<div class=lib-list-cover-ph>${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>'">` : `<div class="lib-list-cover-ph">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
+    const grouped={};
+    recs.forEach(r=>{ const k=r.date?r.date.slice(0,7):'날짜 없음'; if(!grouped[k])grouped[k]=[]; grouped[k].push(r); });
+    let html='';
+    Object.keys(grouped).sort((a,b)=>b.localeCompare(a)).forEach(k=>{
+      const label=k==='날짜 없음'?k:k.replace('-','년 ')+'월';
+      html+=`<div class="lib-section-header">${label}</div>`;
+      grouped[k].forEach(r=>{
+        const stars=r.rating?'★'.repeat(r.rating)+'☆'.repeat(5-r.rating):'';
+        html+=`<div class="lib-list-item" onclick="openDetailModal(state.records.find(x=>x.id==='${r.id}'))">
+          ${r.cover?`<img class="lib-list-cover" src="${r.cover}" loading="lazy">`:`<div class="lib-list-cover-ph">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
           <div class="lib-list-info">
             <span class="media-badge badge-${r.type}">${r.type==='book'?'책':r.type==='movie'?'영화':'드라마'}</span>
             <div class="lib-list-title">${r.title}</div>
-            <div class="lib-list-meta">${r.creator||''} ${stars ? '· '+stars : ''}</div>
-            ${r.memo ? `<div class="lib-list-memo">${r.memo}</div>` : ''}
+            <div class="lib-list-meta">${r.creator||''}${stars?' · '+stars:''}</div>
+            ${r.memo?`<div class="lib-list-memo">${r.memo}</div>`:''}
           </div>
-          <div class="lib-list-date">${r.date ? r.date.slice(5,10).replace('-','/') : ''}</div>
+          <div class="lib-list-date">${r.date?r.date.slice(5,10).replace('-','/'):''}</div>
         </div>`;
       });
     });
-    cont.innerHTML = html;
+    cont.innerHTML=html;
   }
 }
 
-// ────────────────────────────────────────────────────────────
-//  SEARCH
-// ────────────────────────────────────────────────────────────
-document.querySelectorAll('.search-tab').forEach(t => t.addEventListener('click', function() {
+// ── SEARCH ──
+document.querySelectorAll('.search-tab').forEach(t=>t.addEventListener('click',function(){
   document.querySelectorAll('.search-tab').forEach(x=>x.classList.remove('active'));
-  this.classList.add('active');
-  searchType = this.dataset.type;
-  document.getElementById('search-results').innerHTML = '';
+  this.classList.add('active'); searchType=this.dataset.type;
+  document.getElementById('search-results').innerHTML='';
 }));
 document.getElementById('search-do').onclick = doSearch;
-document.getElementById('search-input').addEventListener('keydown', e => { if(e.key==='Enter') doSearch(); });
-
-async function doSearch() {
-  const q = document.getElementById('search-input').value.trim();
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+async function doSearch(){
+  const q=document.getElementById('search-input').value.trim();
   if(!q) return;
-  const res = document.getElementById('search-results');
-  res.innerHTML = '<div class="loading"><div class="spinner"></div>검색 중...</div>';
+  const res=document.getElementById('search-results');
+  res.innerHTML='<div class="loading"><div class="spinner"></div>검색 중...</div>';
   try {
-    if(searchType === 'book') await searchBooks(q);
-    else await searchTmdb(q, searchType);
-  } catch(e) {
-    res.innerHTML = `<div class="search-empty">검색 중 오류가 발생했어요.<br><small style="color:var(--text3)">${e.message}</small></div>`;
-  }
+    if(searchType==='book') await searchBooks(q);
+    else await searchTmdb(q,searchType);
+  } catch(e) { res.innerHTML=`<div class="search-empty">오류: ${e.message}</div>`; }
 }
-async function searchBooks(q) {
-  const key = settings.kakaoKey;
-  if(!key) { document.getElementById('search-results').innerHTML = '<div class="search-empty">설정에서 카카오 API 키를 입력해주세요.</div>'; return; }
-  const url = `https://dapi.kakao.com/v3/search/book?query=${encodeURIComponent(q)}&size=15`;
-  const resp = await fetch(url, { headers:{ Authorization:`KakaoAK ${key}` } });
-  if(!resp.ok) throw new Error('카카오 API 오류: '+resp.status);
-  const data = await resp.json();
-  renderSearchResults(data.documents.map(b => ({
-    type:'book', title:b.title, creator:b.authors?.join(', ')||'',
-    cover:b.thumbnail, meta:`${b.publisher||''} · ${b.datetime?.slice(0,4)||''}`,
-    isbn:b.isbn, extra:b
-  })));
+async function searchBooks(q){
+  if(!settings.kakaoKey){document.getElementById('search-results').innerHTML='<div class="search-empty">설정에서 카카오 API 키를 입력해주세요.</div>';return;}
+  const resp=await fetch(`https://dapi.kakao.com/v3/search/book?query=${encodeURIComponent(q)}&size=15`,{headers:{Authorization:`KakaoAK ${settings.kakaoKey}`}});
+  if(!resp.ok) throw new Error('카카오 API 오류 '+resp.status);
+  const data=await resp.json();
+  renderSearchResults(data.documents.map(b=>({type:'book',title:b.title,creator:b.authors?.join(', ')||'',cover:b.thumbnail,meta:`${b.publisher||''} · ${b.datetime?.slice(0,4)||''}`,extra:b})));
 }
-async function searchTmdb(q, type) {
-  const key = settings.tmdbKey;
-  if(!key) { document.getElementById('search-results').innerHTML = '<div class="search-empty">설정에서 TMDB API 키를 입력해주세요.</div>'; return; }
-  const endpoint = type==='movie' ? 'movie' : 'tv';
-  const url = `https://api.themoviedb.org/3/search/${endpoint}?api_key=${key}&query=${encodeURIComponent(q)}&language=ko-KR&page=1`;
-  const resp = await fetch(url);
-  if(!resp.ok) throw new Error('TMDB API 오류: '+resp.status);
-  const data = await resp.json();
-  renderSearchResults(data.results.map(m => ({
-    type, title:m.title||m.name, creator:'',
-    cover:m.poster_path ? `https://image.tmdb.org/t/p/w185${m.poster_path}` : '',
-    meta:`${(m.release_date||m.first_air_date||'').slice(0,4)} · ⭐${m.vote_average?.toFixed(1)||'-'}`,
-    tmdbId:m.id, extra:m
-  })));
+async function searchTmdb(q,type){
+  if(!settings.tmdbKey){document.getElementById('search-results').innerHTML='<div class="search-empty">설정에서 TMDB API 키를 입력해주세요.</div>';return;}
+  const ep=type==='movie'?'movie':'tv';
+  const resp=await fetch(`https://api.themoviedb.org/3/search/${ep}?api_key=${settings.tmdbKey}&query=${encodeURIComponent(q)}&language=ko-KR`);
+  if(!resp.ok) throw new Error('TMDB API 오류 '+resp.status);
+  const data=await resp.json();
+  renderSearchResults(data.results.map(m=>({type,title:m.title||m.name,creator:'',cover:m.poster_path?`https://image.tmdb.org/t/p/w185${m.poster_path}`:'',meta:`${(m.release_date||m.first_air_date||'').slice(0,4)} · ⭐${m.vote_average?.toFixed(1)||'-'}`,extra:m})));
 }
-function renderSearchResults(items) {
-  const res = document.getElementById('search-results');
-  if(!items.length) { res.innerHTML = '<div class="search-empty">검색 결과가 없어요.</div>'; return; }
-  res.innerHTML = items.map((item,i) => `
+function renderSearchResults(items){
+  const res=document.getElementById('search-results');
+  if(!items.length){res.innerHTML='<div class="search-empty">검색 결과가 없어요.</div>';return;}
+  res.innerHTML=items.map((item,i)=>`
     <div class="search-result-item">
-      ${item.cover ? `<img class="search-result-cover" src="${item.cover}" loading="lazy" onerror="this.style.background='var(--bg2)'">` : `<div class="search-result-cover" style="display:flex;align-items:center;justify-content:center;font-size:24px">${item.type==='book'?'📖':item.type==='movie'?'🎬':'📺'}</div>`}
+      ${item.cover?`<img class="search-result-cover" src="${item.cover}" loading="lazy">`:`<div class="search-result-cover" style="display:flex;align-items:center;justify-content:center;font-size:24px">${item.type==='book'?'📖':item.type==='movie'?'🎬':'📺'}</div>`}
       <div class="search-result-info">
         <div class="search-result-title">${item.title}</div>
-        <div class="search-result-meta">${item.creator ? item.creator+'<br>' : ''}${item.meta}</div>
+        <div class="search-result-meta">${item.creator?item.creator+'<br>':''}${item.meta}</div>
       </div>
       <button class="add-btn" onclick='openAddModal(${JSON.stringify(item).replace(/'/g,"&#39;")})'>+</button>
     </div>`).join('');
 }
 
-// ────────────────────────────────────────────────────────────
-//  ADD / EDIT MODAL
-// ────────────────────────────────────────────────────────────
-document.getElementById('btn-add').onclick = () => openAddModal(null);
-
-function openAddModal(item) {
-  pendingItem = item;
-  editingRecord = null;
-  currentRating = 0;
-  document.getElementById('modal-title-text').textContent = item ? '기록 추가' : '직접 추가';
-  const today = new Date().toISOString().slice(0,10);
-  const body = document.getElementById('modal-body');
-  let typeVal = item ? item.type : 'book';
-  body.innerHTML = `
+// ── ADD/EDIT MODAL ──
+document.getElementById('btn-add').onclick = ()=>openAddModal(null);
+function openAddModal(item){
+  pendingItem=item; editingRecord=null; currentRating=0;
+  document.getElementById('modal-title-text').textContent=item?'기록 추가':'직접 추가';
+  const today=new Date().toISOString().slice(0,10);
+  const typeVal=item?item.type:'book';
+  document.getElementById('modal-body').innerHTML=`
     <div class="add-modal-top">
-      ${item?.cover ? `<img class="add-modal-cover" src="${item.cover}">` : `<div class="add-modal-cover" style="display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--bg2);border-radius:6px">${typeVal==='book'?'📖':typeVal==='movie'?'🎬':'📺'}</div>`}
+      ${item?.cover?`<img class="add-modal-cover" src="${item.cover}">`:`<div class="add-modal-cover" style="display:flex;align-items:center;justify-content:center;font-size:28px">${typeVal==='book'?'📖':typeVal==='movie'?'🎬':'📺'}</div>`}
       <div style="flex:1;min-width:0">
         <div class="form-group" style="margin-bottom:10px">
           <label class="form-label">종류</label>
@@ -752,362 +665,227 @@ function openAddModal(item) {
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">저자 / 감독</label>
-      <input class="form-input" id="f-creator" value="${item?.creator||''}" placeholder="저자, 감독, 출연진 등">
-    </div>
-    <div class="form-group">
-      <label class="form-label">감상일</label>
-      <input class="form-input" id="f-date" type="date" value="${today}">
-    </div>
-    <div class="form-group">
-      <label class="form-label">별점</label>
-      <div class="star-row" id="star-row">
-        ${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">★</span>`).join('')}
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">한줄 감상</label>
-      <textarea class="form-textarea" id="f-memo" placeholder="감상을 남겨보세요..."></textarea>
-    </div>`;
+    <div class="form-group"><label class="form-label">저자 / 감독</label><input class="form-input" id="f-creator" value="${item?.creator||''}" placeholder="저자, 감독 등"></div>
+    <div class="form-group"><label class="form-label">감상일</label><input class="form-input" id="f-date" type="date" value="${today}"></div>
+    <div class="form-group"><label class="form-label">별점</label><div class="star-row" id="star-row">${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">★</span>`).join('')}</div></div>
+    <div class="form-group"><label class="form-label">한줄 감상</label><textarea class="form-textarea" id="f-memo" placeholder="감상을 남겨보세요..."></textarea></div>`;
   initStars(0);
-  document.getElementById('modal-footer').innerHTML = `
-    <button class="btn btn-secondary" onclick="closeModal()">취소</button>
-    <button class="btn btn-primary" onclick="saveRecord()">저장</button>`;
+  document.getElementById('modal-footer').innerHTML=`<button class="btn btn-secondary" onclick="closeModal()">취소</button><button class="btn btn-primary" onclick="saveRecord()">저장</button>`;
   openModal();
 }
-function openDetailModal(r) {
+function openDetailModal(r){
   if(!r) return;
-  editingRecord = r.id;
-  currentRating = r.rating || 0;
-  document.getElementById('modal-title-text').textContent = '기록 상세';
-  const body = document.getElementById('modal-body');
-  body.innerHTML = `
+  editingRecord=r.id; currentRating=r.rating||0;
+  document.getElementById('modal-title-text').textContent='기록 상세';
+  document.getElementById('modal-body').innerHTML=`
     <div class="detail-top">
-      ${r.cover ? `<img class="detail-cover" src="${r.cover}" onerror="this.style.display='none'">` : `<div class="detail-cover-ph">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
+      ${r.cover?`<img class="detail-cover" src="${r.cover}" onerror="this.style.display='none'">`:`<div class="detail-cover-ph">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
       <div class="detail-info">
         <span class="media-badge badge-${r.type}">${r.type==='book'?'책':r.type==='movie'?'영화':'드라마'}</span>
         <div class="detail-title">${r.title}</div>
-        <div class="detail-meta">
-          ${r.creator ? r.creator+'<br>' : ''}
-          ${r.date ? '📅 '+r.date.slice(0,10) : ''}
-        </div>
+        <div class="detail-meta">${r.creator?r.creator+'<br>':''}${r.date?'📅 '+r.date.slice(0,10):''}</div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">별점</label>
-      <div class="star-row" id="star-row">
-        ${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">★</span>`).join('')}
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">감상일</label>
-      <input class="form-input" id="f-date" type="date" value="${r.date||''}">
-    </div>
-    <div class="form-group">
-      <label class="form-label">한줄 감상</label>
-      <textarea class="form-textarea" id="f-memo" placeholder="감상을 남겨보세요...">${r.memo||''}</textarea>
-    </div>`;
+    <div class="form-group"><label class="form-label">별점</label><div class="star-row" id="star-row">${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">★</span>`).join('')}</div></div>
+    <div class="form-group"><label class="form-label">감상일</label><input class="form-input" id="f-date" type="date" value="${r.date||''}"></div>
+    <div class="form-group"><label class="form-label">한줄 감상</label><textarea class="form-textarea" id="f-memo" placeholder="감상을 남겨보세요...">${r.memo||''}</textarea></div>`;
   initStars(r.rating||0);
-  document.getElementById('modal-footer').innerHTML = `
-    <button class="btn btn-danger" onclick="deleteRecord('${r.id}')">삭제</button>
-    <button class="btn btn-primary" onclick="saveRecord()">저장</button>`;
+  document.getElementById('modal-footer').innerHTML=`<button class="btn btn-danger" onclick="deleteRecord('${r.id}')">삭제</button><button class="btn btn-primary" onclick="saveRecord()">저장</button>`;
   openModal();
 }
-function initStars(n) {
-  currentRating = n;
-  const row = document.getElementById('star-row');
+function initStars(n){
+  currentRating=n;
+  const row=document.getElementById('star-row');
   if(!row) return;
-  row.querySelectorAll('.star').forEach(s => {
-    s.classList.toggle('on', +s.dataset.n <= n);
-    s.onclick = () => { currentRating = +s.dataset.n; initStars(currentRating); };
+  row.querySelectorAll('.star').forEach(s=>{
+    s.classList.toggle('on',+s.dataset.n<=n);
+    s.onclick=()=>{currentRating=+s.dataset.n;initStars(currentRating);};
   });
 }
-function saveRecord() {
-  const title = document.getElementById('f-title')?.value.trim() || (editingRecord ? state.records.find(r=>r.id===editingRecord)?.title : '');
-  if(!title) { showToast('제목을 입력해주세요'); return; }
-  if(editingRecord) {
-    const rec = state.records.find(r=>r.id===editingRecord);
-    if(rec) {
-      rec.date = document.getElementById('f-date')?.value || rec.date;
-      rec.memo = document.getElementById('f-memo')?.value || '';
-      rec.rating = currentRating;
-    }
+function saveRecord(){
+  const title=document.getElementById('f-title')?.value.trim()||(editingRecord?state.records.find(r=>r.id===editingRecord)?.title:'');
+  if(!title){showToast('제목을 입력해주세요');return;}
+  if(editingRecord){
+    const rec=state.records.find(r=>r.id===editingRecord);
+    if(rec){rec.date=document.getElementById('f-date')?.value||rec.date;rec.memo=document.getElementById('f-memo')?.value||'';rec.rating=currentRating;}
   } else {
-    const type = document.getElementById('f-type')?.value || 'book';
-    state.records.push({
-      id: Date.now().toString(),
-      type, title,
-      creator: document.getElementById('f-creator')?.value||'',
-      date: document.getElementById('f-date')?.value||'',
-      memo: document.getElementById('f-memo')?.value||'',
-      rating: currentRating,
-      cover: pendingItem?.cover||'',
-      extra: pendingItem?.extra||null
-    });
+    state.records.push({id:Date.now().toString(),type:document.getElementById('f-type')?.value||'book',title,creator:document.getElementById('f-creator')?.value||'',date:document.getElementById('f-date')?.value||'',memo:document.getElementById('f-memo')?.value||'',rating:currentRating,cover:pendingItem?.cover||'',extra:pendingItem?.extra||null});
   }
-  saveState();
-  closeModal();
-  showToast('저장되었어요 ✓');
+  saveState(); closeModal(); showToast('저장되었어요 ✓');
   if(curPage==='calendar') renderCalendar();
   if(curPage==='library') renderLibrary();
 }
-function deleteRecord(id) {
+function deleteRecord(id){
   if(!confirm('이 기록을 삭제할까요?')) return;
-  state.records = state.records.filter(r=>r.id!==id);
-  saveState();
-  closeModal();
-  showToast('삭제되었어요');
+  state.records=state.records.filter(r=>r.id!==id);
+  saveState(); closeModal(); showToast('삭제되었어요');
   if(curPage==='calendar') renderCalendar();
   if(curPage==='library') renderLibrary();
 }
-function openModal() { document.getElementById('modal-overlay').classList.add('open'); }
-function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); editingRecord=null; pendingItem=null; }
-document.getElementById('modal-close').onclick = closeModal;
-document.getElementById('modal-overlay').addEventListener('click', e => { if(e.target===document.getElementById('modal-overlay')) closeModal(); });
+function openModal(){document.getElementById('modal-overlay').classList.add('open');}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');editingRecord=null;pendingItem=null;}
+document.getElementById('modal-close').onclick=closeModal;
+document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
 
-// ────────────────────────────────────────────────────────────
-//  STATS
-// ────────────────────────────────────────────────────────────
-document.getElementById('stats-prev').onclick = () => { statsYear--; renderStats(); };
-document.getElementById('stats-next').onclick = () => { statsYear++; renderStats(); };
-function renderStats() {
-  document.getElementById('stats-year-label').textContent = statsYear+'년';
-  const recs = state.records.filter(r => r.date && r.date.startsWith(statsYear+''));
-  const books = recs.filter(r=>r.type==='book').length;
-  const movies = recs.filter(r=>r.type==='movie').length;
-  const dramas = recs.filter(r=>r.type==='drama').length;
-  // Monthly counts
-  const monthly = Array(12).fill(0);
-  recs.forEach(r => { const m = parseInt(r.date.slice(5,7))-1; monthly[m]++; });
-  const maxM = Math.max(...monthly,1);
-  const cont = document.getElementById('stats-content');
-  cont.innerHTML = `
-    <div class="stats-card">
-      <div class="stats-card-title">전체 기록</div>
-      <div class="stats-big"><span class="stats-num">${recs.length}</span><span class="stats-unit">개</span></div>
-    </div>
+// ── STATS ──
+document.getElementById('stats-prev').onclick=()=>{statsYear--;renderStats();};
+document.getElementById('stats-next').onclick=()=>{statsYear++;renderStats();};
+function renderStats(){
+  document.getElementById('stats-year-label').textContent=statsYear+'년';
+  const recs=state.records.filter(r=>r.date&&r.date.startsWith(statsYear+''));
+  const books=recs.filter(r=>r.type==='book').length;
+  const movies=recs.filter(r=>r.type==='movie').length;
+  const dramas=recs.filter(r=>r.type==='drama').length;
+  const monthly=Array(12).fill(0);
+  recs.forEach(r=>{const m=parseInt(r.date.slice(5,7))-1;monthly[m]++;});
+  const maxM=Math.max(...monthly,1);
+  document.getElementById('stats-content').innerHTML=`
+    <div class="stats-card"><div class="stats-card-title">전체 기록</div><div class="stats-big"><span class="stats-num">${recs.length}</span><span class="stats-unit">개</span></div></div>
     <div class="stats-row">
       <div class="stats-card"><div class="stats-card-title">📖 책</div><div class="stats-big"><span class="stats-num">${books}</span></div></div>
       <div class="stats-card"><div class="stats-card-title">🎬 영화</div><div class="stats-big"><span class="stats-num">${movies}</span></div></div>
       <div class="stats-card"><div class="stats-card-title">📺 드라마</div><div class="stats-big"><span class="stats-num">${dramas}</span></div></div>
     </div>
-    <div class="stats-card">
-      <div class="stats-card-title">월별 기록</div>
-      <div class="bar-chart">
-        ${monthly.map((n,i) => `<div class="bar-item">
-          <span class="bar-val">${n||''}</span>
-          <div class="bar" style="height:${Math.round((n/maxM)*60)+4}px;opacity:${n?1:.15}"></div>
-          <span class="bar-label">${i+1}월</span>
-        </div>`).join('')}
-      </div>
+    <div class="stats-card"><div class="stats-card-title">월별 기록</div>
+      <div class="bar-chart">${monthly.map((n,i)=>`<div class="bar-item"><span class="bar-val">${n||''}</span><div class="bar" style="height:${Math.round((n/maxM)*60)+4}px;opacity:${n?1:.15}"></div><span class="bar-label">${i+1}월</span></div>`).join('')}</div>
     </div>`;
 }
 
-// ────────────────────────────────────────────────────────────
-//  SETTINGS
-// ────────────────────────────────────────────────────────────
-function loadSettingsUI() {
-  document.getElementById('input-kakao-key').value = settings.kakaoKey || '';
-  document.getElementById('input-tmdb-key').value = settings.tmdbKey || '';
-  document.getElementById('input-google-client-id').value = settings.googleClientId || '';
-  updateGoogleStatusUI();
+// ── SETTINGS ──
+function loadSettingsUI(){
+  document.getElementById('input-kakao-key').value=settings.kakaoKey||'';
+  document.getElementById('input-tmdb-key').value=settings.tmdbKey||'';
+  document.getElementById('input-google-client-id').value=settings.googleClientId||'';
 }
-document.getElementById('btn-save-keys').onclick = () => {
-  settings.kakaoKey = document.getElementById('input-kakao-key').value.trim();
-  settings.tmdbKey = document.getElementById('input-tmdb-key').value.trim();
-  saveSettings();
-  showToast('API 키 저장 완료 ✓');
+document.getElementById('btn-save-keys').onclick=()=>{
+  settings.kakaoKey=document.getElementById('input-kakao-key').value.trim();
+  settings.tmdbKey=document.getElementById('input-tmdb-key').value.trim();
+  saveSettings(); showToast('API 키 저장 완료 ✓');
 };
-document.getElementById('btn-save-google-id').onclick = () => {
-  settings.googleClientId = document.getElementById('input-google-client-id').value.trim();
-  saveSettings();
-  showToast('Client ID 저장됨 ✓');
+document.getElementById('btn-save-google-id').onclick=()=>{
+  settings.googleClientId=document.getElementById('input-google-client-id').value.trim();
+  saveSettings(); showToast('Client ID 저장됨 ✓');
 };
-document.getElementById('btn-drive-save').onclick = async () => {
-  if(!settings.googleClientId) { showToast('먼저 Client ID를 저장해주세요'); return; }
-  await requestTokenThen(async () => {
-    await syncDrive();
-    showToast('Drive에 저장됨 ✓');
-  });
+document.getElementById('btn-drive-save').onclick=async()=>{
+  if(!settings.googleClientId){showToast('먼저 Client ID를 저장해주세요');return;}
+  await requestTokenThen(async()=>{await syncDrive();showToast('Drive에 저장됨 ✓');});
 };
-document.getElementById('btn-drive-load').onclick = async () => {
-  if(!settings.googleClientId) { showToast('먼저 Client ID를 저장해주세요'); return; }
-  await requestTokenThen(async () => {
-    await loadFromDrive();
-  });
+document.getElementById('btn-drive-load').onclick=async()=>{
+  if(!settings.googleClientId){showToast('먼저 Client ID를 저장해주세요');return;}
+  await requestTokenThen(async()=>{await loadFromDrive();});
 };
-document.getElementById('btn-export-txt').onclick = exportTxt;
-document.getElementById('btn-export-csv').onclick = exportCsv;
-document.getElementById('btn-backup-json').onclick = backupJson;
-document.getElementById('btn-restore-json').onclick = () => document.getElementById('restore-file-input').click();
-document.getElementById('restore-file-input').onchange = restoreJson;
+document.getElementById('btn-export-txt').onclick=exportTxt;
+document.getElementById('btn-export-csv').onclick=exportCsv;
+document.getElementById('btn-backup-json').onclick=backupJson;
+document.getElementById('btn-restore-json').onclick=()=>document.getElementById('restore-file-input').click();
+document.getElementById('restore-file-input').onchange=restoreJson;
 
-function updateGoogleStatusUI() {
-  const badge = document.getElementById('google-status-badge');
-  const text = document.getElementById('google-status-text');
-  const btnArea = document.getElementById('google-btn-area');
-  if(settings.googleConnected && gisToken) {
-    badge.className = 'google-status connected'; badge.textContent = '연결됨';
-    text.textContent = '실시간 자동 저장 활성화';
-    btnArea.innerHTML = '<button class="btn btn-secondary btn-full" id="btn-google-logout">로그아웃</button>';
-    document.getElementById('btn-google-logout').onclick = () => { gisToken=null; settings.googleConnected=false; saveSettings(); updateGoogleStatusUI(); };
-  } else {
-    badge.className = 'google-status disconnected'; badge.textContent = '미연결';
-    text.textContent = '연결되지 않음';
-    btnArea.innerHTML = '<button class="btn btn-primary btn-full" id="btn-google-login">Google로 로그인</button>';
-    document.getElementById('btn-google-login').onclick = () => {
-      if(!settings.googleClientId) { showToast('먼저 Client ID를 저장해주세요'); return; }
-      initGoogleAuth();
-    };
-  }
-}
-
-// ────────────────────────────────────────────────────────────
-//  EXPORT
-// ────────────────────────────────────────────────────────────
-function exportTxt() {
-  if(!state.records.length) { showToast('기록이 없어요'); return; }
-  const lines = state.records.sort((a,b)=>(a.date||'').localeCompare(b.date||'')).map(r =>
-    `[${r.type==='book'?'책':r.type==='movie'?'영화':'드라마'}] ${r.title}\n저자/감독: ${r.creator||'-'}\n감상일: ${r.date||'-'}\n별점: ${'★'.repeat(r.rating||0)+'☆'.repeat(5-(r.rating||0))}\n감상: ${r.memo||'-'}\n`
-  );
-  download('미디어로그.txt', lines.join('\n---\n\n'), 'text/plain');
+// ── EXPORT ──
+function exportTxt(){
+  if(!state.records.length){showToast('기록이 없어요');return;}
+  const lines=state.records.sort((a,b)=>(a.date||'').localeCompare(b.date||'')).map(r=>`[${r.type==='book'?'책':r.type==='movie'?'영화':'드라마'}] ${r.title}\n저자/감독: ${r.creator||'-'}\n감상일: ${r.date||'-'}\n별점: ${'★'.repeat(r.rating||0)+'☆'.repeat(5-(r.rating||0))}\n감상: ${r.memo||'-'}\n`);
+  download('미디어로그.txt',lines.join('\n---\n\n'),'text/plain');
   showToast('TXT 저장됨 ✓');
 }
-function exportCsv() {
-  if(!state.records.length) { showToast('기록이 없어요'); return; }
-  const header = '종류,제목,저자/감독,감상일,별점,감상\n';
-  const rows = state.records.map(r =>
-    [r.type==='book'?'책':r.type==='movie'?'영화':'드라마', r.title, r.creator||'', r.date||'', r.rating||'', r.memo||''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')
-  );
-  download('미디어로그.csv', '\uFEFF'+header+rows.join('\n'), 'text/csv');
+function exportCsv(){
+  if(!state.records.length){showToast('기록이 없어요');return;}
+  const header='종류,제목,저자/감독,감상일,별점,감상\n';
+  const rows=state.records.map(r=>[r.type==='book'?'책':r.type==='movie'?'영화':'드라마',r.title,r.creator||'',r.date||'',r.rating||'',r.memo||''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
+  download('미디어로그.csv','\uFEFF'+header+rows.join('\n'),'text/csv');
   showToast('CSV 저장됨 ✓');
 }
-function backupJson() {
-  if(!state.records.length) { showToast('백업할 기록이 없어요'); return; }
-  const date = new Date().toISOString().slice(0,10);
-  download(`medialog_backup_${date}.json`, JSON.stringify(state, null, 2), 'application/json');
+function backupJson(){
+  if(!state.records.length){showToast('백업할 기록이 없어요');return;}
+  const date=new Date().toISOString().slice(0,10);
+  download(`medialog_backup_${date}.json`,JSON.stringify(state,null,2),'application/json');
   showToast('백업 파일 저장됨 ✓');
 }
-function restoreJson(e) {
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = (ev) => {
+function restoreJson(e){
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=(ev)=>{
     try {
-      const data = JSON.parse(ev.target.result);
-      if(!data.records || !Array.isArray(data.records)) throw new Error('올바른 백업 파일이 아니에요');
-      const count = data.records.length;
+      const data=JSON.parse(ev.target.result);
+      if(!data.records||!Array.isArray(data.records)) throw new Error('올바른 백업 파일이 아니에요');
+      const count=data.records.length;
       if(!confirm(`백업 파일에 기록 ${count}개가 있어요.\n현재 데이터에 합쳐서 불러올까요?\n(중복 항목은 자동으로 제외됩니다)`)) return;
-      // Merge: skip duplicates by id
-      const existingIds = new Set(state.records.map(r => r.id));
-      const newRecs = data.records.filter(r => !existingIds.has(r.id));
-      state.records = [...state.records, ...newRecs];
-      saveState();
-      showToast(`${newRecs.length}개 기록 복구됨 ✓`);
+      const existingIds=new Set(state.records.map(r=>r.id));
+      const newRecs=data.records.filter(r=>!existingIds.has(r.id));
+      state.records=[...state.records,...newRecs];
+      saveState(); showToast(`${newRecs.length}개 기록 복구됨 ✓`);
       if(curPage==='calendar') renderCalendar();
       if(curPage==='library') renderLibrary();
-    } catch(err) {
-      showToast('파일 오류: '+err.message);
-    }
-    e.target.value = ''; // reset input
+    } catch(err){ showToast('파일 오류: '+err.message); }
+    e.target.value='';
   };
   reader.readAsText(file);
 }
-function download(name, content, type) {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([content],{type}));
-  a.download = name; a.click();
+function download(name,content,type){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([content],{type}));
+  a.download=name; a.click();
 }
 
-// ────────────────────────────────────────────────────────────
-//  GOOGLE DRIVE SYNC
-// ────────────────────────────────────────────────────────────
-let gisToken = null;
-let driveFileId = null;
-const DRIVE_FILE_NAME = 'medialog_data.json';
-const GIS_SCOPE = 'https://www.googleapis.com/auth/drive.appdata';
-
-function loadGisScript() {
-  return new Promise(res => {
-    if(window.google?.accounts) { res(); return; }
-    const s = document.createElement('script');
-    s.src = 'https://accounts.google.com/gsi/client';
-    s.onload = res; document.head.appendChild(s);
+// ── GOOGLE DRIVE ──
+function loadGisScript(){
+  return new Promise(res=>{
+    if(window.google?.accounts){res();return;}
+    const s=document.createElement('script');
+    s.src='https://accounts.google.com/gsi/client';
+    s.onload=res; document.head.appendChild(s);
   });
 }
-async function requestTokenThen(callback) {
+async function requestTokenThen(callback){
   await loadGisScript();
-  const client = google.accounts.oauth2.initTokenClient({
-    client_id: settings.googleClientId,
-    scope: GIS_SCOPE,
-    callback: async (resp) => {
-      if(resp.error) { showToast('로그인 실패: '+resp.error); return; }
-      gisToken = resp.access_token;
+  const client=google.accounts.oauth2.initTokenClient({
+    client_id:settings.googleClientId,
+    scope:GIS_SCOPE,
+    callback:async(resp)=>{
+      if(resp.error){showToast('로그인 실패: '+resp.error);return;}
+      gisToken=resp.access_token;
       await callback();
     }
   });
   client.requestAccessToken();
 }
-async function initGoogleAuth() {
-  await requestTokenThen(() => {});
-}
-async function syncDrive() {
+async function syncDrive(){
   if(!gisToken) return;
   try {
-    const content = JSON.stringify(state);
-    if(driveFileId) {
-      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${driveFileId}?uploadType=media`, {
-        method:'PATCH', headers:{ Authorization:`Bearer ${gisToken}`, 'Content-Type':'application/json' }, body:content
-      });
+    const content=JSON.stringify(state);
+    if(!driveFileId) driveFileId=await findDriveFile();
+    if(driveFileId){
+      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${driveFileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:`Bearer ${gisToken}`,'Content-Type':'application/json'},body:content});
     } else {
-      const found = await findDriveFile();
-      if(found) { driveFileId=found; await syncDrive(); }
-      else {
-        const meta = { name:DRIVE_FILE_NAME, parents:['appDataFolder'] };
-        const form = new FormData();
-        form.append('metadata', new Blob([JSON.stringify(meta)],{type:'application/json'}));
-        form.append('file', new Blob([content],{type:'application/json'}));
-        const r = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
-          method:'POST', headers:{ Authorization:`Bearer ${gisToken}` }, body:form
-        });
-        const d = await r.json(); driveFileId = d.id;
-      }
+      const form=new FormData();
+      form.append('metadata',new Blob([JSON.stringify({name:DRIVE_FILE_NAME,parents:['appDataFolder']})],{type:'application/json'}));
+      form.append('file',new Blob([content],{type:'application/json'}));
+      const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:`Bearer ${gisToken}`},body:form});
+      const d=await r.json(); driveFileId=d.id;
     }
-  } catch(e) { console.warn('Drive sync failed',e); }
+  } catch(e){console.warn('Drive sync failed',e);}
 }
-async function findDriveFile() {
-  const r = await fetch(`https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='${DRIVE_FILE_NAME}'`, {
-    headers:{ Authorization:`Bearer ${gisToken}` }
-  });
-  const d = await r.json();
-  return d.files?.[0]?.id || null;
+async function findDriveFile(){
+  const r=await fetch(`https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='${DRIVE_FILE_NAME}'`,{headers:{Authorization:`Bearer ${gisToken}`}});
+  const d=await r.json(); return d.files?.[0]?.id||null;
 }
-async function loadFromDrive() {
+async function loadFromDrive(){
   try {
-    const id = await findDriveFile();
-    if(!id) return;
-    driveFileId = id;
-    const r = await fetch(`https://www.googleapis.com/drive/v3/files/${id}?alt=media`, {
-      headers:{ Authorization:`Bearer ${gisToken}` }
-    });
-    const d = await r.json();
-    if(d.records) { state = d; saveState(); renderCalendar(); showToast('Drive에서 데이터 불러옴 ✓'); }
-  } catch(e) { console.warn('Drive load failed',e); }
+    if(!driveFileId) driveFileId=await findDriveFile();
+    if(!driveFileId){showToast('Drive에 저장된 데이터가 없어요');return;}
+    const r=await fetch(`https://www.googleapis.com/drive/v3/files/${driveFileId}?alt=media`,{headers:{Authorization:`Bearer ${gisToken}`}});
+    const d=await r.json();
+    if(d.records){state=d;saveState();renderCalendar();showToast('Drive에서 불러왔어요 ✓');}
+  } catch(e){console.warn('Drive load failed',e);showToast('불러오기 실패');}
 }
 
-// ────────────────────────────────────────────────────────────
-//  TOAST
-// ────────────────────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2000);
+// ── TOAST ──
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
 }
 
-// ────────────────────────────────────────────────────────────
-//  INIT
-// ────────────────────────────────────────────────────────────
+// ── INIT ──
 loadState();
 renderCalendar();
 </script>
