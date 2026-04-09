@@ -15,15 +15,15 @@
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   :root {
     --primary:#222; --accent:#4A90D9; --bg:#fff; --bg2:#f7f7f7;
-    --border:#e8e8e8; --text:#222; --text2:#888; --text3:#bbb;
+    --border:#e8e8e8; --text:#0f1419; --text2:#536471; --text3:#8899a6;
     --card-radius:12px; --tab-h:60px; --header-h:56px;
   }
-  body { font-family:'Malgun Gothic','맑은 고딕',Arial,sans-serif; background:var(--bg); color:var(--text); height:100dvh; overflow:hidden; }
+  body { font-family:'Malgun Gothic','맑은 고딕',Arial,sans-serif; background:var(--bg); color:var(--text); height:100dvh; overflow:hidden; font-size:15px; }
   #app { display:flex; flex-direction:column; height:100dvh; width:100%; max-width:480px; margin:0 auto; position:relative; background:#fff; box-shadow:0 0 30px rgba(0,0,0,.08); }
   .cal-grid { width:100%; max-width:480px; table-layout:fixed; border-collapse:collapse; }
 
   .header { height:var(--header-h); display:flex; align-items:center; justify-content:space-between; padding:0 16px; border-bottom:1px solid var(--border); background:#fff; flex-shrink:0; }
-  .header h1 { font-size:18px; font-weight:700; letter-spacing:-.3px; }
+  .header h1 { font-size:20px; font-weight:800; letter-spacing:-.3px; }
   .header-btns { display:flex; gap:8px; }
   .icon-btn { width:36px; height:36px; border:none; background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; border-radius:8px; color:var(--text); }
   .icon-btn:hover { background:var(--bg2); }
@@ -34,21 +34,21 @@
   .page.active { display:block; }
 
   .tabbar { height:var(--tab-h); display:flex; border-top:1px solid var(--border); background:#fff; flex-shrink:0; }
-  .tab { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; cursor:pointer; border:none; background:none; color:var(--text3); font-family:inherit; font-size:10px; transition:color .15s; }
+  .tab { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; cursor:pointer; border:none; background:none; color:var(--text3); font-family:inherit; font-size:11px; font-weight:600; transition:color .15s; }
   .tab.active { color:var(--accent); }
   .tab svg { width:22px; height:22px; }
 
   /* CALENDAR */
   .cal-nav { display:flex; align-items:center; justify-content:space-between; padding:14px 16px 10px; }
   .cal-title { display:flex; align-items:center; gap:6px; }
-  .cal-title select { font-family:inherit; font-size:17px; font-weight:700; border:none; background:none; cursor:pointer; color:var(--text); appearance:none; -webkit-appearance:none; padding-right:4px; }
+  .cal-title select { font-family:inherit; font-size:18px; font-weight:800; border:none; background:none; cursor:pointer; color:var(--text); appearance:none; -webkit-appearance:none; padding-right:4px; }
   .cal-arrow { width:32px; height:32px; border:none; background:none; cursor:pointer; border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--text2); }
   .cal-arrow:hover { background:var(--bg2); }
   .cal-grid { width:100%; table-layout:fixed; border-collapse:collapse; }
-  .cal-grid th { font-size:11px; color:var(--text2); text-align:center; padding:4px 0 8px; font-weight:500; }
+  .cal-grid th { font-size:12px; color:var(--text2); text-align:center; padding:4px 0 8px; font-weight:700; }
   .cal-grid td { text-align:center; vertical-align:top; padding:2px; height:clamp(90px, 12vw, 140px); border:none; }
-  .cal-day-num { font-size:11px; color:var(--text2); margin-bottom:2px; display:block; }
-  .cal-day-num.today { background:var(--accent); color:#fff; border-radius:50%; width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; }
+  .cal-day-num { font-size:12px; color:var(--text2); font-weight:600; margin-bottom:2px; display:block; }
+  .cal-day-num.today { background:var(--accent); color:#fff; border-radius:50%; width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center; }
   .cal-thumb-wrap { width:100%; height:calc(clamp(90px, 12vw, 140px) - 22px); overflow:hidden; border-radius:4px; position:relative; }
   .cal-thumb-single { width:100%; height:100%; object-fit:cover; border-radius:4px; display:block; }
   .cal-thumb-single-ph { width:100%; height:100%; background:var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:20px; }
@@ -219,6 +219,11 @@
           <button class="cal-arrow" id="cal-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
       </div>
+      <div style="display:flex;gap:6px;padding:0 16px 10px;">
+        <button class="filter-chip active" data-calfilter="all">전체</button>
+        <button class="filter-chip" data-calfilter="book">책</button>
+        <button class="filter-chip" data-calfilter="screen">영화·드라마</button>
+      </div>
       <table class="cal-grid">
         <thead><tr id="cal-head"></tr></thead>
         <tbody id="cal-body"></tbody>
@@ -230,9 +235,9 @@
       <div class="lib-toolbar">
         <div class="lib-filter">
           <button class="filter-chip active" data-filter="all">전체</button>
-          <button class="filter-chip" data-filter="book">📖 책</button>
-          <button class="filter-chip" data-filter="movie">🎬 영화</button>
-          <button class="filter-chip" data-filter="drama">📺 드라마</button>
+          <button class="filter-chip" data-filter="book">책</button>
+          <button class="filter-chip" data-filter="movie">영화</button>
+          <button class="filter-chip" data-filter="drama">드라마</button>
         </div>
         <div class="view-btns">
           <!-- ✅ 수정: 리스트뷰가 기본 active -->
@@ -407,6 +412,7 @@ let calMonth = new Date().getMonth();
 let statsYear = new Date().getFullYear();
 // ✅ 수정: 기본 뷰를 list로
 let libView = 'list';
+let calFilter = 'all';
 let libFilter = 'all';
 let searchType = 'book';
 let currentRating = 0;
@@ -436,6 +442,13 @@ function goPage(p) {
   if(p==='settings') loadSettingsUI();
 }
 document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => goPage(t.dataset.page)));
+
+document.querySelectorAll('[data-calfilter]').forEach(c => c.addEventListener('click', function() {
+  document.querySelectorAll('[data-calfilter]').forEach(x => x.classList.remove('active'));
+  this.classList.add('active');
+  calFilter = this.dataset.calfilter;
+  renderCalendar();
+}));
 
 function buildCalSelectors() {
   const ySel = document.getElementById('cal-year-sel');
@@ -469,6 +482,8 @@ function renderCalendar() {
   const byDate = {};
   state.records.forEach(r => {
     const d = r.date ? r.date.slice(0,10) : '';
+    if(calFilter === 'book' && r.type !== 'book') return;
+    if(calFilter === 'screen' && r.type === 'book') return;
     if(!byDate[d]) byDate[d]=[];
     byDate[d].push(r);
   });
