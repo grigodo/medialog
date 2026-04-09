@@ -438,6 +438,8 @@ function goPage(p) {
   document.querySelectorAll('.page').forEach(el => el.classList.toggle('active', el.id==='page-'+p));
   document.querySelectorAll('.tab').forEach(el => el.classList.toggle('active', el.dataset.page===p));
   document.getElementById('header-title').textContent = pageNames[p];
+    // 캘린더 페이지일 때 헤더 숨기기
+  document.querySelector('.header').style.display = p === 'calendar' ? 'none' : '';
   if(p==='calendar') renderCalendar();
   if(p==='library') renderLibrary();
   if(p==='stats') renderStats();
@@ -1078,6 +1080,7 @@ function showToast(msg) {
 }
 
 loadState();
+document.querySelector('.header').style.display = 'none';
 renderCalendar();
 </script>
 </body>
