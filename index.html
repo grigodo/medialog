@@ -780,15 +780,21 @@ document.getElementById('csv-file-input').onchange = importCsv;
 
 function parseDate(raw) {
   if(!raw) return '';
-  // "2024.01.15", "2024-01-15", "24.01.15", "2024년 1월 15일" 등 처리
   const s = raw.trim();
   let m;
+  // "2024.01.15" / "2024-01-15" / "2024/01/15"
   m = s.match(/^(\d{4})[.\-\/](\d{1,2})[.\-\/](\d{1,2})/);
   if(m) return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
+  // "24.01.15" / "24-01-15"
   m = s.match(/^(\d{2})[.\-\/](\d{1,2})[.\-\/](\d{1,2})/);
   if(m) return `20${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
+  // "21 05 07" (공백 구분 YY MM DD)
+  m = s.match(/^(\d{2})\s+(\d{1,2})\s+(\d{1,2})$/);
+  if(m) return `20${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
+  // "2024년 1월 15일"
   m = s.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
   if(m) return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
+  // "2024.01" / "2024-01" (일 없는 경우)
   m = s.match(/^(\d{4})[.\-\/](\d{1,2})$/);
   if(m) return `${m[1]}-${m[2].padStart(2,'0')}-01`;
   return '';
