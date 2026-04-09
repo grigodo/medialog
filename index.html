@@ -18,7 +18,7 @@
     --border:#e8e8e8; --text:#0f1419; --text2:#536471; --text3:#8899a6;
     --card-radius:12px; --tab-h:60px; --header-h:56px;
   }
-  body { font-family:'Malgun Gothic','맑은 고딕',Arial,sans-serif; background:var(--bg); color:var(--text); height:100dvh; overflow:hidden; font-size:15px; }
+  * { color: inherit; }  body { font-family:'Malgun Gothic','맑은 고딕',Arial,sans-serif; background:#fff; color:#0f1419; height:100dvh; overflow:hidden; font-size:15px; }
   #app { display:flex; flex-direction:column; height:100dvh; width:100%; max-width:480px; margin:0 auto; position:relative; background:#fff; box-shadow:0 0 30px rgba(0,0,0,.08); }
   .cal-grid { width:100%; max-width:480px; table-layout:fixed; border-collapse:collapse; }
 
@@ -586,11 +586,11 @@ function renderLibrary() {
           ${r.cover?`<img class="lib-list-cover" src="${r.cover}" loading="lazy">`:`<div class="lib-list-cover-ph">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
           <div class="lib-list-info">
             <span class="media-badge badge-${r.type}">${r.type==='book'?'책':r.type==='movie'?'영화':'드라마'}</span>
-            <div class="lib-list-title">${r.title}</div>
-            <div class="lib-list-meta">${r.creator||''}${stars?' · '+stars:''}</div>
-            ${r.memo?`<div class="lib-list-memo">${r.memo}</div>`:''}
+            <div class="lib-list-title" style="color:#0f1419;font-size:16px;font-weight:800">${r.title}</div>
+            <div class="lib-list-meta" style="color:#536471;font-size:13px;font-weight:600">${r.creator||''}${stars?' · '+stars:''}</div>
+            ${r.memo?`<div class="lib-list-memo" style="color:#0f1419;font-size:14px">${r.memo}</div>`:''}
           </div>
-          <div class="lib-list-date">${r.date?r.date.slice(5,10).replace('-','/'):''}</div>
+          <div class="lib-list-date" style="color:#536471;font-size:13px;font-weight:700">${r.date?r.date.slice(5,10).replace('-','/'):''}</div>
         </div>`;
       });
     });
@@ -683,10 +683,10 @@ function openDetailModal(r){
   document.getElementById('modal-body').innerHTML=`
     <div class="detail-top">
       ${r.cover?`<img class="detail-cover" src="${r.cover}" onerror="this.style.display='none'">`:`<div class="detail-cover-ph">${r.type==='book'?'📖':r.type==='movie'?'🎬':'📺'}</div>`}
-      <div class="detail-info">
+      <div class="detail-info" style="flex:1;min-width:0">
         <span class="media-badge badge-${r.type}">${r.type==='book'?'책':r.type==='movie'?'영화':'드라마'}</span>
-        <div class="detail-title">${r.title}</div>
-        <div class="detail-meta">${r.creator?r.creator+'<br>':''}${r.date?'📅 '+r.date.slice(0,10):''}</div>
+        <input class="form-input" id="f-title" value="${r.title||''}" placeholder="제목" style="margin-bottom:6px;font-weight:700;font-size:15px">
+        <input class="form-input" id="f-creator" value="${r.creator||''}" placeholder="저자 / 감독">
       </div>
     </div>
     <div class="form-group"><label class="form-label">별점</label><div class="star-row" id="star-row">${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">★</span>`).join('')}</div></div>
@@ -710,7 +710,13 @@ function saveRecord(){
   if(!title){showToast('제목을 입력해주세요');return;}
   if(editingRecord){
     const rec=state.records.find(r=>r.id===editingRecord);
-    if(rec){rec.date=document.getElementById('f-date')?.value||rec.date;rec.memo=document.getElementById('f-memo')?.value||'';rec.rating=currentRating;}
+    if(rec){
+      rec.title=document.getElementById('f-title')?.value.trim()||rec.title;
+      rec.creator=document.getElementById('f-creator')?.value||'';
+      rec.date=document.getElementById('f-date')?.value||rec.date;
+      rec.memo=document.getElementById('f-memo')?.value||'';
+      rec.rating=currentRating;
+    }
   } else {
     state.records.push({id:Date.now().toString(),type:document.getElementById('f-type')?.value||'book',title,creator:document.getElementById('f-creator')?.value||'',date:document.getElementById('f-date')?.value||'',memo:document.getElementById('f-memo')?.value||'',rating:currentRating,cover:pendingItem?.cover||'',extra:pendingItem?.extra||null});
   }
